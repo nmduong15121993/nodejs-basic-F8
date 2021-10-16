@@ -1,14 +1,12 @@
 const express = require('express');
+const morgan = require('morgan');
 
 const app = express();
 const port = 3000;
 
+app.use(morgan('combined'));
+
 app.get('/', (req, res) => {
-  let a = 5;
-  let b =10;
-
-  let c = a + b;
-
   res.send('Hello NodeJs Express');
 })
 
