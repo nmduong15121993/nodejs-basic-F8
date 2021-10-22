@@ -4,4 +4,4 @@ node_modules/
 
 .vscode
 
-public/css/
+src/public/css/
