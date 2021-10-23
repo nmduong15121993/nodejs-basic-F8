@@ -23,4 +23,10 @@ app.get('/news', (req, res) => {
   res.render('new');
 });
 
+app.get('/search', (req, res) => {
+  console.log(req.query.q);
+  const data = req.query.q;
+  res.render('search');
+});
+
 app.listen(port, () => console.log('Listent in port' + port));
