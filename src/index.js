@@ -15,6 +15,9 @@ app.engine('hbs', handlebars({ extname: '.hbs' }));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources/views'));
 
+app.use(express.json()) // for parsing application/json
+app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
 app.get('/', (req, res) => {
   res.render('home');
 });
@@ -24,9 +27,12 @@ app.get('/news', (req, res) => {
 });
 
 app.get('/search', (req, res) => {
-  console.log(req.query.q);
-  const data = req.query.q;
   res.render('search');
+});
+
+app.post('/search', (req, res) => {
+  console.log(req.body);
+  res.send('Hello search');
 });
 
 app.listen(port, () => console.log('Listent in port' + port));
