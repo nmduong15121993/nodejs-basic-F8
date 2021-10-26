@@ -19,7 +19,7 @@ app.use(morgan('combined'));
 // Template engine
 app.engine('hbs', handlebars({ extname: '.hbs' }));
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'resources/views'));
+app.set('views', path.join(__dirname, 'resources', 'views'));
 
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -27,4 +27,4 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 // Routes Init
 route(app);
 
-app.listen(port, () => console.log('Listent in port' + port));
+app.listen(port, () => console.log('App Listent in port' + port));
