@@ -5,6 +5,7 @@ const path = require('path');
 
 const app = express();
 const port = 3000;
+const route = require('./routes');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -18,21 +19,7 @@ app.set('views', path.join(__dirname, 'resources/views'));
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
-app.get('/', (req, res) => {
-  res.render('home');
-});
-
-app.get('/news', (req, res) => {
-  res.render('new');
-});
-
-app.get('/search', (req, res) => {
-  res.render('search');
-});
-
-app.post('/search', (req, res) => {
-  console.log(req.body);
-  res.send('Hello search');
-});
+// Routes Init
+route(app);
 
 app.listen(port, () => console.log('Listent in port' + port));
