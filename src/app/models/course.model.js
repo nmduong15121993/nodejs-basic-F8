@@ -5,6 +5,7 @@ const Courses = new Schema({
   name: { type: String, maxlength: 50 },
   description: { type: String },
   image: { type: String },
+  slug: { type: String },
   createdAt: { type: Date, default: Date.now },
   updateAt: { type: Date, default: Date.now },
 });
