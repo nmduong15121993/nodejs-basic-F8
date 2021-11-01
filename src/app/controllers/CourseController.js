@@ -23,7 +23,21 @@ class CourseController {
     course.save()
       .then(() => res.redirect(`/`))
       .catch(next);
+  }
 
+  // [GET] courses/:id/edit
+  edit(req, res, next) {
+    Courses.findOne({ _id: req.params.id })
+      .then(course => res.render('courses/edit', { course: mongooseToObject(course) }))
+      .catch(next)
+  }
+
+  // [PUT] courses/:id
+  update(req, res, next) {
+    const id = req.params.id;
+    Courses.updateOne({ _id: id }, req.body)
+      .then(() => res.redirect('/me/stored/courses'))
+      .catch(next)
   }
 }
 
