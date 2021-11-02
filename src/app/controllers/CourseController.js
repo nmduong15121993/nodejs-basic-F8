@@ -8,12 +8,12 @@ class CourseController {
         res.render('courses/show', { course: mongooseToObject(course) });
       })
       .catch(next);
-  }
+  };
 
   // [GET] 
   create(req, res, next) {
     res.render('courses/create');
-  }
+  };
 
   // [POST] 
   store(req, res, next) {
@@ -23,14 +23,14 @@ class CourseController {
     course.save()
       .then(() => res.redirect(`/`))
       .catch(next);
-  }
+  };
 
   // [GET] courses/:id/edit
   edit(req, res, next) {
     Courses.findOne({ _id: req.params.id })
       .then(course => res.render('courses/edit', { course: mongooseToObject(course) }))
       .catch(next)
-  }
+  };
 
   // [PUT] courses/:id
   update(req, res, next) {
@@ -38,7 +38,16 @@ class CourseController {
     Courses.updateOne({ _id: id }, req.body)
       .then(() => res.redirect('/me/stored/courses'))
       .catch(next)
-  }
+  };
+
+  // [DELETE] course/:id
+  delete(req, res, next) {
+    const id = req.params.id;
+    Courses.deleteOne({ _id: id })
+      .then(() => res.redirect('back'))
+      .catch(next)
+  };
+
 }
 
 module.exports = new CourseController();
